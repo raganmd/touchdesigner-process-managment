@@ -1,4 +1,4 @@
-# TouchDesigner Process Managment
+# TouchDesigner Process Management
 A look at how you can launch another process from TouchDesigner with Python, and how you can kill that process.
 
 ## Contributing Programers / Artists ##
@@ -16,9 +16,9 @@ At some point you'll need to split up the work of a single project into multiple
 The good news is that we can do this with a little bit of python. We need to import a few extra libraries, and we need to do a little leg work - but once we get a handle on those things we have a straightforward process on our hands.
 
 ### Getting Started
-First things first, start by downloading or cloning the whole repo. We'll start by opening the `process-managment.toe` file. You might imagine that this is the toe file that you're launching processes from, or you might think of this as your main control toe file. You'll notice that there's also a toe file called `other-app.toe`. This is the file we're going to launch from within TouchDesigner. At this point feel free to open up that file - you'll see that it starts in perform mode and says that it's some other process. Perfect. You should also notice that it says "my role is," but nothing else. Don't worry, it's this way on purpose. 
+First things first, start by downloading or cloning the whole repo. We'll start by opening the `process-management.toe` file. You might imagine that this is the toe file that you're launching processes from, or you might think of this as your main control toe file. You'll notice that there's also a toe file called `other-app.toe`. This is the file we're going to launch from within TouchDesigner. At this point feel free to open up that file - you'll see that it starts in perform mode and says that it's some other process. Perfect. You should also notice that it says "my role is," but nothing else. Don't worry, it's this way on purpose. 
 
-### Process-managment.toe
+### Process-management.toe
 In this toe file you'll see three buttons:
 * Launch Process
 * Quit Process
@@ -58,7 +58,7 @@ parent().store('other_app', other_app)
 
 So, what's happening here? First we need to import a few other libraries that we're going to use - os and subprocess. From there we need to identify the application we're going to use, and the file we're going to launch. Said another way we want to know what program we're going to open our toe file with. You'll see that we're doing something a little tricksy here. In Touch, the all class has a member called `binFolder` - this tells us the location of the Touch Binary files, which happens to include our executable file. Rather than hard coding a path to our binary we can instead use the path provided by Touch - this has lots of advantages and should mean that your code is less likely to break from machine to machine. 
 
-Similarly, you'll see that we location our `other-process.toe` by looking at our project folder (where `process-managment.toe` is saved) and locating our `other-process.toe` file relative to our main project file. 
+Similarly, you'll see that we location our `other-process.toe` by looking at our project folder (where `process-management.toe` is saved) and locating our `other-process.toe` file relative to our main project file. 
 
 So far so good. You should also see that we're setting an environment variable with `os.environ`. This is an interesting place where we can actually set variables for a Touch process at start. Why do this? Well, you may find that you have a single toe file that you want to configure differently for any number of reasons. If you're using a single toe file configuration, you might want to launch your main file to default as a controller, and a another instance of the same file in an output configuration, and maybe another instance of the same app to handle some other process. If that's not interesting to you, you can comment out that line - but it might at least be worth thinking about before you add that pound sign.
 
